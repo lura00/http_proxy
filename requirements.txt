@@ -1,2 +1,4 @@
-python
-flask
+pytest
+pycodestyle
+flake8
+requests

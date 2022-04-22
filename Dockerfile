@@ -1,9 +1,18 @@
-FROM python:3.9
+FROM python:3
 
 WORKDIR /usr/src/app
 
-COPY . /app
+COPY requirements.txt ./
 
-RUN make /app
+ENV PORT=8000
 
-CMD python3 /app/http_proxy.py
+EXPOSE 8000
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+ENTRYPOINT ["python", "./app/http_proxy.py"]
+
+
+# If you beeing refused connection by Docker daemon, try type in cli, sudo chmod 666 /var/run/docker.sock

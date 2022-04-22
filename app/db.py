@@ -2,9 +2,9 @@ import sqlite3
 
 class webBlock_db:
     
-    def __init__(self, website_www, website_http):
-        self.website_www = website_www
-        self.website_http = website_http
+    def __init__(self):
+        self.website_www = 'website_www'
+        self.website_http = 'website_http'
 
 
     def show_all_blockes(self):
@@ -18,13 +18,14 @@ class webBlock_db:
 
         self.conn.commit()
         self.conn.close()
+        return item
 
     
     def create_table(self):
         self.conn = sqlite3.connect('blocks.db')
         self.cur = self.conn.cursor()
         self.cur.execute("""CREATE TABLE blocks (
-            id INTEGER PRIMARY KEY AUTOINCREMENT
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             http TEXT,
             www TEXT
         )""")
@@ -35,7 +36,7 @@ class webBlock_db:
     def add_one(self, website_www, website_http):
         self.conn = sqlite3.connect('blocks.db')
         self.cur = self.conn.cursor()
-        self.cur.execute("INSERT INTO blocks VALUES (?,?)", (website_http, website_www))
+        self.cur.execute("INSERT INTO blocks VALUES (NULL,?,?)", (website_http, website_www))
         self.conn.commit()
         self.conn.close()
     
