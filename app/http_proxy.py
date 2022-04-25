@@ -10,7 +10,7 @@ from db import webBlock_db
     Website I test on:
     localhost:8000/http://httpvshttps.com
 
-    Server running on localhost port 8000. So to test entering a http website enter in the browser 
+    Server running on localhost port 8000. So to test entering a http website enter in the browser
     localhost:8000/http://example.com (example.com is also a test http website)"""
 
 # decalaring the database object from db.py file
