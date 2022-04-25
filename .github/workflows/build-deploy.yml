@@ -19,7 +19,10 @@ jobs:
           ignore: "E501"
           max-line-length: "100"
           path: "app"
+
   deploy:
+    environment:
+      name: http-proxy-secrets
     runs-on: ubuntu-latest
     needs: [lint_python]
     name: Deploy to Dockerhub
