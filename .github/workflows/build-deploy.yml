@@ -5,10 +5,10 @@ on: [push]
 jobs:
   build:
     name: testing
-      - uses: actions/checkout@master
-        with:
-        ref: ${{ github.event.pull_request.head.sha }}
-      - name: 'Run PEP8'
-        uses: quentinguidee/pep8-action@v1
-        with:
-        arguments: '--max-line-length=120'
+    - uses: actions/checkout@master
+      with:
+      ref: ${{ github.event.pull_request.head.sha }}
+    - name: 'Run PEP8'
+      uses: quentinguidee/pep8-action@v1
+      with:
+      arguments: '--max-line-length=120'
