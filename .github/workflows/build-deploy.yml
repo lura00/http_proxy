@@ -19,7 +19,7 @@ jobs:
           checkName: "Python Lint"
           path: ./app
           # config: ./venv/bin
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{secrets.MY_TOKEN}}
+        # env:
+        #   DEFAULT_BRANCH: main
+        #   GITHUB_TOKEN: ${{secrets.MY_TOKEN}}
     
