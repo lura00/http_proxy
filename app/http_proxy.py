@@ -9,7 +9,7 @@ from db import webBlock_db
 
     Website I test on:
     localhost:8000/http://httpvshttps.com
-    
+
     Server running on localhost port 8000. So to test entering a http website enter in the browser 
     localhost:8000/http://example.com (example.com is also a test http website)"""
 
@@ -26,14 +26,13 @@ PORT = 8000
 BLOCK_DOMAIN = database.show_all_blockes()
 print(f"This is all the blocked domains: {BLOCK_DOMAIN}")
 
-class MyProxy(server.SimpleHTTPRequestHandler):
 
+class MyProxy(server.SimpleHTTPRequestHandler):
 
     def redirect_to_new_website(self):
         newUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
         print("redirecting due to banned website")
         return newUrl
-
 
     def do_GET(self):
         # print('request received from browser')
