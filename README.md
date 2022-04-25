@@ -22,4 +22,5 @@
 
 # Dockerfile
 - To buid image "docker build -t name:tag .
-- To start container "docker run -it --rm name:tag
+- To start container "docker run -p 8000:8000 -it --rm name:tag
+- If you beeing refused connection by Docker daemon, try type in cli, sudo chmod 666 /var/run/docker.sock
