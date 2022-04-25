@@ -1,6 +1,8 @@
 # import pytest
-# from ..app import http_proxy
-# from requests import status_codes
+# from ..app.http_proxy import MyProxy
+# from urllib import request
+# import unittest
+
 # import sys
 # sys.path.append('/./app/application/app/folder')
 
@@ -10,7 +12,8 @@ import pytest to run pytest, requests to check status codes is correct
 
  run using pytest command, pytest -v (verbosity for more output"""
 
-# def test_status_code_ok():
-#     if http_proxy.MyProxy.do_GET == True:
 
-#         assert status_codes(200)
+# class Test(unittest.TestCase):
+
+#     def test_status_code_ok(self):
+#         self.assertEqual(MyProxy.do_GET(200))

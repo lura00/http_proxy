@@ -2,7 +2,7 @@ import socketserver
 from http import server
 import urllib.request
 import webbrowser
-from db import webBlock_db
+from .db import webBlock_db
 
 
 """HTTP PROXY, WEB BLOCKER
