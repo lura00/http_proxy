@@ -7,6 +7,8 @@ jobs:
     name: Lint code base
     runs-on: ubuntu-latest
     steps:
+      - name: Install requirements
+        run: pip install -r requirements.txt
       - name: Checkout code
         uses: suo/flake8-github-action@releases/v1
         env:
