@@ -30,11 +30,18 @@ print(f"This is all the blocked domains: {BLOCK_DOMAIN}")
 class MyProxy(server.SimpleHTTPRequestHandler):
 
     def redirect_to_new_website(self):
+        """Simple function to redirect user to another 
+        website when trying to enter a blocked domain.
+        """
         newUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
         print("redirecting due to banned website")
         return newUrl
 
     def do_GET(self):
+        """Connection function
+            Fetching the URL from path.
+            checks if the URL is in BLOCK_DOMAIN.
+            If all is good, sends response and header and connects."""
         # print('request received from browser')
         url = self.path[1:]
         if url in BLOCK_DOMAIN:
@@ -48,6 +55,10 @@ class MyProxy(server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.copyfile(urllib.request.urlopen(url), self.wfile)
 
+"""httpd
+    Fetching the URL from conn-class and do_GET function,
+    Then printing listening to let the user know the server is active,
+    Then uses the serve_forever module. And only breaks the connection when user stops it, with command, ctrl + C"""
 
 httpd = socketserver.ForkingTCPServer(('', PORT), MyProxy)
 print("listening...")

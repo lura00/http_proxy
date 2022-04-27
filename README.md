@@ -16,6 +16,13 @@
 - HTTPS websites will still work.
 
 
+## Database
+- The database file is pretty much ready to go. As we can see in the http_proxy-file I have imported from the db-file the class    that contains all the options for the db.
+- I have assigned the class to a variable in the http_proxy-file called database.
+- To use the db-functions. just type databse. and choose the needed funtion.
+- To get the databse and table created use the commented code in the http_proxy-file, "database.create_table()" and a db and table will be created.
+
+
 ## Block a website
 - Add a website to the database, or check if the website is already in the database.
 - If a website is in the database that site should be blocked and close the connection.
@@ -26,15 +33,8 @@
 - to see the content of the table in the database, SELECT * FROM blocks; (in my case the table is also called blocks).
 
 
-## Database
-- The database file is pretty much ready to go. As we can see in the http_proxy-file I have imported from the db-file the class    that contains all the options for the db.
-- I have assigned the class to a variable in the http_proxy-file called database.
-- To use the db-functions. just type databse. and choose the needed funtion.
-- To get the databse and table created use the commented code in the http_proxy-file, "database.create_table()" and a db and table will be created.
-
-
 ## Dockerfile
-- To buid image "docker build -t name:tag .
+- To build image "docker build -t name:tag .
 - To start container "docker run -p 8000:8000 -it --rm name:tag
 - If you beeing refused connection by Docker daemon, try type in cli, sudo chmod 666 /var/run/docker.sock
 
@@ -44,6 +44,16 @@
 - The github actions file "build-deploy.yml" uses Dockerfile to build the image then push it. 
 - The code is from docs.docker, see link if interesting.
 - https://docs.docker.com/ci-cd/github-actions/
+- If you want to push to your dockerhub you need to 1. add secrets to your github repo and add same names as in pipeline 
+    "DOCKER_HUB_USERNAME" for example. you will find this in your repo, go to "settings > left hand side go to > environments > 
+    New environment > scroll down to Environmanet secrets > Add secret".
+- A secret is similar to a .env credential. A username or password that you dont want to display. 
+- In Dockerhub you need to create a repo as well, as you see in my pipline my repo is named "proxy-http:latest" and that is
+    name:tag.
+- Once dockerhub repo is done you need a secret key. Login to your account, click on top right side on your username.
+    > username > account settings > Security > New Access token.
+- Make sure to copy the key, It can only be displayed once. then add this to a github secret called "DOCKER_HUB_PASSWORD".
+- See link as well: https://docs.docker.com/ci-cd/github-actions/ 
 
 ## Testing
 - Uses pytest
@@ -60,9 +70,13 @@
 - add a website to block
 - change website-blocks
 - delete website-blocks
+- I had in mind a simple CLI based interface. A simple menu when program starts given option to start the proxy, 
+    and then option 2. block website, 3. change website block 4. delete block.
+    Something like that.
 
 ## Stats
 - Fetch data from database how many times a certain website has been blocked.
+    perhaps fetch all data from db, divide all websites by name to a list, then take range or len on that list.
 
 ## Tests
 - Write tests that are missing
