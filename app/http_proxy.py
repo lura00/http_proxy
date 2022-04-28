@@ -2,7 +2,8 @@ import socketserver
 from http import server
 import urllib.request
 import webbrowser
-from .db import webBlock_db
+from db import webBlock_db
+import sys
 
 
 """HTTP PROXY, WEB BLOCKER
@@ -14,7 +15,7 @@ from .db import webBlock_db
     localhost:8000/http://example.com (example.com is also a test http website)"""
 
 # decalaring the database object from db.py file
-database = webBlock_db()
+
 
 # database.create_table()
 
@@ -23,11 +24,15 @@ database = webBlock_db()
 # database.add_one('http://httpvshttps.com', 'www.httpvshttps.com')
 
 PORT = 8000
-BLOCK_DOMAIN = database.show_all_blockes()
-print(f"This is all the blocked domains: {BLOCK_DOMAIN}")
+# BLOCK_DOMAIN = database.show_all_blockes()
+# print(f"This is all the blocked domains: {BLOCK_DOMAIN}")
 
 
 class MyProxy(server.SimpleHTTPRequestHandler):
+
+    def __init__(self, *args, database, **kwargs):
+        super().__init__(*args, database, **kwargs)
+        self._database = database
 
     def redirect_to_new_website(self):
         """Simple function to redirect user to another 
@@ -43,6 +48,8 @@ class MyProxy(server.SimpleHTTPRequestHandler):
             checks if the URL is in BLOCK_DOMAIN.
             If all is good, sends response and header and connects."""
         # print('request received from browser')
+        BLOCK_DOMAIN = self._database.show_all_blockes()
+        print(f"This is all the blocked domains: {BLOCK_DOMAIN}")
         url = self.path[1:]
         if url in BLOCK_DOMAIN:
             newurl = self.redirect_to_new_website()
@@ -60,9 +67,19 @@ class MyProxy(server.SimpleHTTPRequestHandler):
     Then printing listening to let the user know the server is active,
     Then uses the serve_forever module. And only breaks the connection when user stops it, with command, ctrl + C"""
 
-httpd = socketserver.ForkingTCPServer(('', PORT), MyProxy)
-print("listening...")
-httpd.serve_forever()
+# httpd = socketserver.ForkingTCPServer(('', PORT), MyProxy)
+# print("listening...")
+# httpd.serve_forever()
+
+def main():
+    database = webBlock_db()
+    httpd = socketserver.ForkingTCPServer(('', PORT), MyProxy)
+    print("listening...")
+    httpd.serve_forever()
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
 
 # FROM_DOMAIN = MyProxy()
 # TO_DOMAIN = 'https://youtube.com'
