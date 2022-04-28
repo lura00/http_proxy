@@ -1,6 +1,6 @@
 from pyparsing import empty
 import pytest
-from ..app import http_proxy
+from ..app.http_proxy import MyProxy
 import requests
 from urllib import request, response
 from http import server
@@ -17,6 +17,8 @@ import pytest to run pytest, requests to check status codes is correct
 
  run using pytest command, pytest -v (verbosity for more output"""
 
+
+proxy = MyProxy()
 
 def test_setup_database():
     """ Fixture to set up the in-memory database with test data """
@@ -65,7 +67,7 @@ def test_server_connection():
     # print(httpd)
     session = requests.Session()
 
-    session.proxies = {'http': 'http://127.0.0.1:8000'}
+    session.proxies = proxy.do_GET()
 
     url = 'http://example.com'
 
