@@ -29,9 +29,9 @@ print(f"This is all the blocked domains: {BLOCK_DOMAIN}")
 
 class MyProxy(server.SimpleHTTPRequestHandler):
 
-# def __init__(self, *args, database, **kwargs):
-#     super().__init__(*args, database, **kwargs)
-#     self._database = database
+    # def __init__(self, *args, database, **kwargs):
+    #     super().__init__(*args, database, **kwargs)
+    #     self._database = database
 
     def redirect_to_new_website(self):
         """Simple function to redirect user to another 
