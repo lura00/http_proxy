@@ -34,7 +34,7 @@ class MyProxy(server.SimpleHTTPRequestHandler):
     #     self._database = database
 
     def redirect_to_new_website(self):
-        """Simple function to redirect user to another 
+        """Simple function to redirect user to another
         website when trying to enter a blocked domain.
         """
         newUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
