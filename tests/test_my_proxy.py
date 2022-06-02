@@ -3,6 +3,7 @@ import pytest
 from ..app.http_proxy import MyProxy
 import requests
 from urllib import request, response
+import requests
 from http import server
 import sqlite3
 import socketserver
@@ -65,28 +66,17 @@ def test_server_connection():
     # proxies = http_proxy.MyProxy.do_GET()
     # httpd = socketserver.ForkingTCPServer(('', PORT), http_proxy.MyProxy)
     # print(httpd)
-    session = requests.Session()
-
-    session.proxies = proxy.do_GET()
+    proxy = MyProxy.do_GET()
 
     url = 'http://example.com'
 
-    response = session.get(url)
+    res = requests.post(url, proxies=proxy)
 
-    assert response.status_code == 200
+    #esponse = session.get(url)
 
-    # proxy = http_proxy.MyProxy.do_GET()
-    # if proxy is True:
+    assert res.status_code == 200
 
-    #     url = requests.get('localhost:8000/http://example.com', proxies=proxy)
-    #     assert url.status_code == 200
-    # else:
-    #     assert url.status_code == 400
-    # # httpd.serve_forever()
-    # # response = requests.get(url, proxies=httpd)
-    # # print(response)
-    # # proxy = http_proxy.httpd
-    # response = requests.post(url, proxies=proxy)
+    # assert response.status_code == 200
     
 
 

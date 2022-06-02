@@ -18,6 +18,7 @@ class webBlock_db:
 
         self.conn.commit()
         self.conn.close()
+        print(type(item))
         return item
 
     def create_table(self):

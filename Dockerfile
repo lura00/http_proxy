@@ -15,4 +15,4 @@ COPY . .
 ENTRYPOINT ["python", "./app/http_proxy.py"]
 
 
-# If you beeing refused connection by Docker daemon, try type in cli, sudo chmod 666 /var/run/docker.sock
+# If you beeing refused connection by Docker daemon, try type in cli, sudo chmod 666 /var/run/docker.sock DO NOT USE

@@ -6,8 +6,10 @@
 - (in firefox) a "connection settings" will pop up, in the area "Configure Proxy Access tot he Internet",
     Set to "Manual proxy conf" and in the box called "HTTP Proxy" do the changes below.
 - Enter localhost and listening port same as in the python program.
-- python3 app/proxy_server.py to execute the program.
+- python3 app/http_proxy.py to execute the program.
 - Listening port in browser must be the same as in the python script.
+- On Linux, socketserver.ForkingTCPServer
+- On windows, socketserver.ThreadingTCPServer
 
 ## Go to a http-test-site 
 - I have been testing my proxy on http://httpvshttps.com
