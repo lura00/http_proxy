@@ -16,6 +16,7 @@ schedules:
     exclude:
     # This will exclude old releases
     - releases/old/*
+  always: true
 
 resources:
 - repo: self
