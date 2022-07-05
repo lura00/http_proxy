@@ -2,6 +2,19 @@
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+schedules:
+# (*, stars) are wildcards to match ay possible value
+- cron: "0 0 * * *"
+  displayName: Daily midnight build
+  branches:
+    include:
+    # this will trigger pipelines in master and any under releases folder
+    - master
+    - releases/*
+    exclude:
+    # This will exclude old releases
+    - releases/old/*
+
 trigger:
 - main
 
