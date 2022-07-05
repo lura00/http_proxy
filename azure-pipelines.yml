@@ -2,6 +2,8 @@
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+trigger: none
+
 schedules:
 # (*, stars) are wildcards to match ay possible value
 - cron: "0 0 * * *"
@@ -9,14 +11,11 @@ schedules:
   branches:
     include:
     # this will trigger pipelines in master and any under releases folder
-    - master
+    - main
     - releases/*
     exclude:
     # This will exclude old releases
     - releases/old/*
-
-trigger:
-- main
 
 resources:
 - repo: self
